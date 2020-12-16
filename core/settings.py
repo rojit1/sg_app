@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'accounts',
     'places',
     'userprofile',
+    'wishlist'
 
 ]
 
