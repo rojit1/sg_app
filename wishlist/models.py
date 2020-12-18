@@ -9,7 +9,7 @@ class WishList(models.Model):
     place = models.ForeignKey(Place,on_delete=models.CASCADE)
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['user','place'],name="unique fields")
+            models.UniqueConstraint(fields=['user_id','place_id'],name="unique fields")
         ]
 
     def __str__(self):

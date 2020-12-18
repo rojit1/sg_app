@@ -1,3 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
-# Create your views here.
+def activate_account(request,uid,token):
+    return redirect(f'http://localhost:3000/activate/{uid}/{token}')

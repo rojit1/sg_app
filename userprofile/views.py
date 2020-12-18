@@ -17,14 +17,10 @@ class UserProfileView(APIView):
       serializer = UserProfileSerializer(instance=userprofile)
       return Response(serializer.data,status=status.HTTP_200_OK)
     except UserProfile.DoesNotExist:
-      user = {
-        'firstname':request.user.firstname,
-        'lastname':request.user.lastname,
-        'email':request.user.email,
-      }
-      return Response(user,status=status.HTTP_200_OK)
+      return Response({'msg':'ok'},status=status.HTTP_304_NOT_MODIFIED)
 
-    
+  def post(self,request,format=None):
+    pass
 
 
       
