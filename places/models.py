@@ -20,7 +20,7 @@ class Place(models.Model):
   location=models.PointField(blank=True,null=True)
   description = models.TextField()
   image = models.ImageField(upload_to='places',blank=True,null=True)
-  category = models.ManyToManyField(Category)
+  category = models.ManyToManyField(Category,blank=True)
 
   def __str__(self):
     return self.name
