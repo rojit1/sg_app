@@ -9,7 +9,7 @@ User = get_user_model()
 
 class UserProfileView(APIView):
 
-  parser_classes = MultiPartParser, FormParser
+  # parser_classes = MultiPartParser, FormParser
 
   def get(self,request,*args,**kwargs):
     try:
@@ -20,7 +20,25 @@ class UserProfileView(APIView):
       return Response({'msg':'ok'},status=status.HTTP_304_NOT_MODIFIED)
 
   def post(self,request,format=None):
-    pass
+    data = request.data
+    data['user'] = request.user
+    try:
+      UserProfile.objects.get(user=request.user)
+    except Exception:
+      UserProfile.objects.create(**data)
+    return Response({'msg':'ok'})
+
+  def put(self,request):
+    user_profile = request.user.userprofile
+    user_profile.country =  request.data['country']
+    user_profile.address =  request.data['address']
+    user_profile.save()
+    return Response({'msg':"updated"})
+
+
+
+
+    
 
 
       
